@@ -1,0 +1,51 @@
+//solution 1
+ALGORITHM DistinctElement 
+VAR
+    set1 : ARRAY_OF INTEGER[20];
+    set2 : ARRAY_OF INTEGER[20];
+    sum,i,j,l1,l2 : INTEGER;
+    l1=set1.length;
+    l2:=set2.length;
+BEGIN
+s:= 0;
+    FOR i FROM 0 TO l1 DO
+       Read(set1[i]);
+     FOR j FROM 0 TO l2 DO
+       Read(set2[j]);
+        IF (set1[i]<>set2[j]) THEN
+            sum := sum + set1[i];
+        END_IF
+     END_FOR
+   END_FOR
+   write("La somme est:" sum);
+END
+
+
+
+//solution 2
+ALGORITHM distinctElement
+VAR
+    set1 : HASH_TABLE<INTEGER,INTEGER>;
+    set2 : HASH_TABLE<INTEGER,INTEGER>;
+    sum,i, j,l1,l2  : INTEGER;
+    l1:=set1.length; 
+    l2:=set2.length
+BEGIN
+sum := 0;
+    FOR i FROM 0 TO set1.length DO
+     set1.insert(i,set1[i]);
+     Read(set1[i]);// insert from user
+     FOR j FROM 0 TO set2.length DO
+     set2.insert(j,set2[j]);
+     Read(set2[j]);// insert from user
+    END_FOR
+    END_FOR
+    WHILE(j<set2.length)DO
+        set2.insert(i,set2[j]);
+         IF (set2.lookup(set1[i]) = FALSE) THEN
+           sum := sum + set1.get(set2[j]) ;
+           j:=j+1;
+         END_IF
+   END_WHILE
+   write("The sum is:" sum);
+END

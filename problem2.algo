@@ -1,0 +1,54 @@
+//solution1
+ALGORITHM overlapping
+VAR
+    set1 : ARRAY_OF INTEGER[10];
+    set2 : ARRAY_OF INTEGER[10];
+    ssum,i,j:INTEGER;
+BEGIN
+    i=0;
+    j=0;
+    sum=0;
+    FOR i FROM 0 to set1.length-1 STEP 1 DO
+       FOR j FROM 0 to set2.length-1 STEP 1 DO
+           IF ( set1[i] = set2[j] ) THEN 
+              sum:=sum+ set1[i]+ set2[j];
+       END_FOR
+    END_FOR
+    Write ("La somme est"sum)
+END
+
+//solution2
+ALGORITHM distinctElement
+VAR
+    set1 : HASH_TABLE<INTEGER,INTEGER>;
+    set2 : HASH_TABLE<INTEGER,INTEGER>;
+    keys : ARRAY_OF INTEGER[];
+    i: INTEGER;
+    sum : INTEGER := 0;
+BEGIN
+
+    FOR i FROM 0 TO set1.length -1 STEP 1  DO
+        IF (set1.lookup(set1[i]) = TRUE) THEN
+            sum := set1.get(set1[i]);
+            set1.insert(set1[i],sum+1);
+        ELSE
+            set.insert(set1[i],1);
+        END_IF
+    END_FOR
+
+    FOR i FROM 0 TO set2.length -1 STEP 1  DO
+        IF (set2.lookup(set2[i]) = TRUE) THEN
+            sum := dict.get(set2[i]);
+            set2.insert(set2[i],sum+1);
+        ELSE
+            set2.insert(set2[i],1);
+        END_IF
+    END_FOR
+    keys := set2.getKeys();
+    FOR i FROM 0 TO set_keys.length -1 STEP 1  DO
+        IF (set2.get(keys[i]) = 2) THEN
+            sum := sum +keys[i];
+        END_IF
+    END_FOR
+
+END
